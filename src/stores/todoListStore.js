@@ -30,8 +30,5 @@ export const useTodoListStore = defineStore("todoListStore", {
         todo.description = updatedItem;
       }
     },
-    // filterItemsById(item) {
-
-    // }
   },
 });
