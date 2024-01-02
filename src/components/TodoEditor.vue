@@ -69,7 +69,6 @@ const onChangeValue = ($event) => {
 const onSaveEditor = () => {
   emit("onSave", text.value);
   if (text.value.length === 0) {
-    debugger;
     isError.value === true;
   }
   text.value = "";
@@ -78,8 +77,7 @@ const onSaveEditor = () => {
 const onCancelEditor = () => {
   emit("onCancel");
 };
-console.log("errorMessage :>> ", props.errorMessage);
-console.log("props.isError :>> ", isError.value);
+
 </script>
 
 <style lang="scss" scoped></style>
