@@ -23,12 +23,21 @@
         <div
           class="flex items-center justify-center bg-orange-600 h-7 w-20 text-xs text-white font-semibold cursor-pointer rounded ml-4"
           @click="onSaveEditor"
+          type="button"
+          :class="{ 'opacity-50': error === true }"
         >
           <span>Save</span>
         </div>
       </div>
     </div>
   </div>
+  <template v-if="isError === true">
+    <p class="text-sm text-orange-600 text-right mt-2">
+      <span class="font-medium">
+        {{ errorMessage }}
+      </span>
+    </p>
+  </template>
 </template>
 
 <script setup>
@@ -39,26 +48,38 @@ const props = defineProps({
     required: false,
     default: {},
   },
+  errorMessage: {
+    type: String,
+    required: true,
+  },
 });
 
 const emit = defineEmits(["onSave", "onCancel"]);
 
-const text = ref(props.data?.description || ""); 
+const text = ref(props.data?.description || "");
+const isError = ref(false);
 
 const onChangeValue = ($event) => {
+  if (text.value.length !== 0) {
+    isError.value === false;
+  }
   text.value = $event.target.value;
 };
 
 const onSaveEditor = () => {
-  console.log('text.value :>> ', text.value);
   emit("onSave", text.value);
+  if (text.value.length === 0) {
+    debugger;
+    isError.value === true;
+  }
   text.value = "";
 };
 
 const onCancelEditor = () => {
   emit("onCancel");
 };
-
+console.log("errorMessage :>> ", props.errorMessage);
+console.log("props.isError :>> ", isError.value);
 </script>
 
 <style lang="scss" scoped></style>

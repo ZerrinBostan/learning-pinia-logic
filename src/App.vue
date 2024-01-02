@@ -7,8 +7,6 @@ import TodoEditor from "@/components/TodoEditor.vue";
 import TodoList from "@/components/TodoList.vue";
 import Button from "@/components/Button.vue";
 const store = useTodoListStore();
-
-const { addTodo, updateTodo, removeTodo } = store;
 const { list } = storeToRefs(store);
 
 const isOpenEditorToAdd = ref(false);
@@ -17,9 +15,11 @@ const selectedEditItemId = ref(null);
 
 // #region - save editor
 const saveTodoEditor = (item) => {
-  if (item.length === 0) return;
+  if (item.length === 0) {
+    return;
+  }
 
-  addTodo(item);
+  store.addTodo(item);
 };
 
 const closeEditorToAdd = () => {
@@ -42,7 +42,7 @@ const openEditorToUpdate = (id) => {
 };
 
 const saveEditorToUpdate = (id, updatedItem) => {
-  updateTodo(id, updatedItem);
+  store.updateTodo(id, updatedItem);
   isOpenEditorToUpdate.value = false;
 };
 
@@ -53,7 +53,7 @@ const closeUpdateEditor = () => {
 
 // #region - remove from list
 const removefromlist = (id) => {
-  removeTodo(id);
+  store.removeTodo(id);
 };
 // endregion
 </script>
@@ -100,6 +100,7 @@ const removefromlist = (id) => {
       v-else
       @onSave="saveTodoEditor($event)"
       @onCancel="closeEditorToAdd"
+      error-message="Lütfen, görev tanımlayınız."
     />
   </div>
 </template>

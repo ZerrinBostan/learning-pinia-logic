@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center">
+  <div class="flex items-center cursor-pointer">
     <PlusSmallIcon class="h-8 w-6 text-orange-600" />
     <span class="text-xs text-stone-400 font-normal pl-1">{{ text }}</span>
   </div>
