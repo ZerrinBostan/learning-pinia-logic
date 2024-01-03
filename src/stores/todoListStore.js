@@ -6,7 +6,8 @@ export const useTodoListStore = defineStore("todoListStore", {
   ┌─────────────────────────────────────────────────────────────────────────────┐
   │     // state                                                                │
   │     // getters                                                              │
-  │     // actions                                                              │
+  │     // actions                                                              │ 
+  │     // $reset                                                               │                                                        
   └─────────────────────────────────────────────────────────────────────────────┘
  */
 
@@ -30,5 +31,8 @@ export const useTodoListStore = defineStore("todoListStore", {
         todo.description = updatedItem;
       }
     },
+    $reset() {
+      this.list = []
+    }
   },
 });

@@ -102,6 +102,7 @@ const removefromlist = (id) => {
       @onCancel="closeEditorToAdd"
       error-message="Lütfen, görev tanımlayınız."
     />
+    <!-- <button type="button" @click="store.$reset">Reset!</button> -->
   </div>
 </template>
 
